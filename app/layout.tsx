@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
-
+import { Providers } from "../components/Providers"; // 1. Import the Providers you created
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,10 +29,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      {/* 2. Added bg-black to the body so there is no white flash during navigation */}
       <body className="min-h-full flex flex-col bg-black text-white">
-        <Navbar /> {/* 3. Place Navbar here so it floats over all pages */}
-        {children}
+        {/* 2. Wrap EVERYTHING inside the body with Providers */}
+        <Providers>
+          <Navbar /> 
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react'; // 1. Import the logic
 
 export default function AuthPage() {
   const router = useRouter();
@@ -19,9 +20,14 @@ export default function AuthPage() {
         <p className="text-white/40 font-light italic">Access your personal archive and orders.</p>
         
         <div className="space-y-4 pt-10">
-          <button className="w-full py-4 bg-white text-black text-[11px] font-bold uppercase tracking-widest hover:bg-white/90 transition-colors">
+          {/* 2. Add the onClick handler here */}
+          <button 
+            onClick={() => signIn('google', { callbackUrl: '/' })}
+            className="w-full py-4 bg-white text-black text-[11px] font-bold uppercase tracking-widest hover:bg-white/90 transition-colors"
+          >
             Continue with Google
           </button>
+          
           <button className="w-full py-4 border border-white/10 text-white text-[11px] font-bold uppercase tracking-widest hover:bg-white/5 transition-colors">
             Continue with Email
           </button>
