@@ -58,3 +58,14 @@ jobs:
             --platform managed \
             --region $REGION \
             --allow-unauthenticated
+
+      - name: Verify Deployment Health
+        run: |
+          sleep 15
+
+          URL=$(gcloud run services describe $SERVICE \
+            --region $REGION \
+            --format 'value(status.url)')
+
+          curl -f "$URL/api/health"
+      
