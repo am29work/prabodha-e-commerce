@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["http://localhost:3000", "https://prabodha-service-421340619978.asia-south1.run.app"],
+    "method": ["GET", "PUT", "POST", "DELETE"],
+    "responseHeader": ["Content-Type"],
+    "maxAgeSeconds": 3600
+  }
+]

@@ -38,7 +38,7 @@ export default async function GenerationPage({
       <section className="relative min-h-[80vh] flex flex-col items-center justify-center px-6 py-12 md:py-20">
 
         <div className="max-w-6xl w-full">
-          
+
           {/* Headline Section */}
           <div className="text-center mb-12 md:mb-20">
             <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif uppercase tracking-tight leading-[0.8] mb-6">
@@ -54,9 +54,8 @@ export default async function GenerationPage({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
 
             {/* Image Container */}
-            <div
-              className="relative aspect-[4/5] max-h-[60vh] mx-auto w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl"
-            >
+            <div className="relative aspect-[4/5] max-h-[60vh] mx-auto w-full overflow-hidden rounded-sm border border-white/10 shadow-2xl">
+
               <img
                 src={data.image}
                 alt={data.title}
@@ -67,12 +66,12 @@ export default async function GenerationPage({
             </div>
 
             {/* Narrative Section */}
-            <div
-              className="flex flex-col space-y-8 text-center lg:text-left"
-            >
+            <div className="flex flex-col space-y-8 text-center lg:text-left">
+
               <div className="space-y-6">
 
                 <div className="flex items-center justify-center lg:justify-start gap-4">
+
                   <div className="h-[1px] w-12 bg-white/20" />
 
                   <h3 className="text-[10px] uppercase tracking-[0.6em] text-white/40 font-bold">
@@ -110,6 +109,7 @@ export default async function GenerationPage({
         <div className="max-w-7xl mx-auto">
 
           <header className="flex flex-col items-center mb-24 space-y-4">
+
             <h2 className="text-3xl md:text-5xl font-serif uppercase tracking-[0.4em] opacity-90">
               The Archive
             </h2>
@@ -125,9 +125,12 @@ export default async function GenerationPage({
                 No products added yet
               </div>
             ) : (
-              products.map((product) => (
-                <div key={product.id} className="group cursor-pointer">
-
+              products.map((product: any) => (
+                <Link
+                  href={`/product/${product.id}`}
+                  key={product.id}
+                  className="group cursor-pointer block"
+                >
                   <div className="aspect-[3/4] bg-white/5 border border-white/5 overflow-hidden relative">
 
                     <img
@@ -149,7 +152,7 @@ export default async function GenerationPage({
                       ₹ {product.price}
                     </span>
                   </div>
-                </div>
+                </Link>
               ))
             )}
           </div>

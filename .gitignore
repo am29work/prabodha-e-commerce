@@ -41,6 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 /lib/generated/prisma
-
-*.json
 prabodha-prod-2026-caeaa0dcf4c5.json
+
+github-actions-key.json

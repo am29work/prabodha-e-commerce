@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { bucket } from '../../../lib/storage';
+import { getBucket } from '../../../lib/storage';
 
 export async function POST(req: Request) {
   try {
@@ -18,6 +18,8 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(bytes);
 
     const filename = `${Date.now()}-${file.name}`;
+
+    const bucket = getBucket();
 
     const blob = bucket.file(filename);
 
