@@ -7,7 +7,6 @@ on:
 
 env:
   PROJECT_ID: prabodha-prod-2026
-  SERVICE: prabodha-service
   REGION: asia-south1
   REPOSITORY: cloud-run-source-deploy
 
@@ -51,10 +50,18 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Set Deployment Environment
+        run: |
+         if [ "${GITHUB_REF##*/}" = "main" ]; then
+          echo "SERVICE=prabodha-service" >> $GITHUB_ENV
+         else
+          echo "SERVICE=prabodha-staging" >> $GITHUB_ENV
+         fi
+
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy $SERVICE \
-            --image asia-south1-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$SERVICE:$GITHUB_SHA \
+            --image asia-south1-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/prabodha-service:$GITHUB_SHA \
             --platform managed \
             --region $REGION \
             --allow-unauthenticated
